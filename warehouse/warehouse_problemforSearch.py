@@ -28,5 +28,12 @@ class WarehouseProblemSearch(Problem[WarehouseState]):
 
     def is_goal(self, state: WarehouseState) -> bool:
         # TODO
+        # temos que ver se o forlift está local final e ter cuidado com as células adjacentes
+        if state.column_forklift == self.goal_position.column:
+            if state.line_forklift == self.goal_position.line:
+                return True
+            else:
+                return False
+
         pass
 

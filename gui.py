@@ -268,7 +268,7 @@ class Window(tk.Tk):
         if filename:
             matrix, num_rows, num_columns = read_state_from_txt_file(filename)
             self.initial_state = WarehouseState(matrix, num_rows, num_columns)
-            self.agent_search = WarehouseAgentSearch(WarehouseState(matrix, num_rows, num_columns))
+            self.agent_search = WarehouseAgentSearch(WarehouseState(matrix, num_rows, num_columns))#vai imprimir o warehouseAgentsearch
             self.solution = None
             self.text_problem.delete("1.0", "end")
             self.text_problem.insert(tk.END, str(self.initial_state) + "\n" + str(self.agent_search))
@@ -625,7 +625,18 @@ class SearchSolver(threading.Thread):
         #calcular a distancia entre os pontos
         #assumindo como ponto de partida o ponto ajdajacente ao ponto de interesse
         #warehousestate->representa o estado do armazem
-        #pair = self.gui.problem_ga.state.get_pair() #retorna um par de pontos
+        pair=0
+        for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
+            self.agent.warehouse_state(pair.cell1, pair.cell2)
+
+            pair.value = self.agent.search_method(pair.cell1, pair.cell2)
+
+        return self.pairs
+
+        str = "Pairs:\n"#vai ser ter que alterar
+        for p in self.pairs:
+            str += f"{p}\n"
+        return str
 
 
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,

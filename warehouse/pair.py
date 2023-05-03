@@ -4,6 +4,11 @@ class Pair:
         self.cell2 = cell2
         self.value = 0
         # TODO?
+        #temos que pecorrer os pares e usar o A*
+        #agente e destino
+        #temos que alterar o valor para aparecer na gui quando se faz run
+
+
 
     def hash(self):
         return str(self.cell1.line) + "_" + str(self.cell1.column) + "_" + str(

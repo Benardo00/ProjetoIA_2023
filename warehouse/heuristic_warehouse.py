@@ -28,7 +28,7 @@ class HeuristicWarehouse(Heuristic[WarehouseProblemSearch, WarehouseState]):
         return h
 
     @property
-    def problem(self):  # foi implementado
+    def problem(self):
         return self._problem
 
     @problem.setter
@@ -36,7 +36,7 @@ class HeuristicWarehouse(Heuristic[WarehouseProblemSearch, WarehouseState]):
         self._problem = problem
         self.build_aux_arrays()
 
-    def __str__(self):#foi implementado
+    def __str__(self):
         return "Tiles distance to final position"
             # TODO
     #---foi adicionado

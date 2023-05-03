@@ -45,7 +45,7 @@ class WarehouseAgentSearch(Agent):
         for a in self.forklifts:
             self.pairs.append(Pair(a, self.exit))
 
-    def __str__(self) -> str:
+    def __str__(self) -> str:#para cada pair imprime o tostring do par
         str = "Pairs:\n"
         for p in self.pairs:
             str += f"{p}\n"
