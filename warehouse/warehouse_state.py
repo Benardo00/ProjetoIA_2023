@@ -11,7 +11,12 @@ class WarehouseState(State[Action]):
 
     def __init__(self, matrix: ndarray, rows, columns):
         super().__init__()
-        # TODO
+
+        self.line_forklift = None
+        self.column_forklift = None
+        self.line_exit = None
+        self.column_exit = None
+
         self.rows = rows
         self.columns = columns
         self.matrix = np.full([self.rows, self.columns], fill_value=0, dtype=int)
