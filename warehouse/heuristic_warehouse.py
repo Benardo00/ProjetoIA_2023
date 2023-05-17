@@ -16,15 +16,11 @@ class HeuristicWarehouse(Heuristic[WarehouseProblemSearch, WarehouseState]):
         h = 0
         h1 = 0
         h2 = 0
-        for i in range(state.rows):
-            for j in range(state.columns):
-                tile = state.matrix[i][j]
-                # Blank is ignored so that the heuristic is admissible
-                if tile != 0:
-                    tile_goal_line, tile_goal_column = self._goal_matrix_positions[tile]
-                    h1 = abs(i - tile_goal_line)
-                    h2 = abs(j - tile_goal_column) #calcula a ditancia entre os 2 pontos
-                    h = mt.sqrt(h1**2+h2**2); #calcula a distancia euclidiana
+        column = state.column_forklift
+        line = state.line_forklift
+        h1 = abs(column - self._problem.goal_position.column)
+        h2 = abs(line - self._problem.goal_position.line) #calcula a ditancia entre os 2 pontos
+        h = mt.sqrt(h1**2+h2**2); #calcula a distancia euclidiana
         return h
 
     @property

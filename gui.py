@@ -25,9 +25,6 @@ from warehouse.warehouse_problemforGA import WarehouseProblemGA
 from warehouse.warehouse_state import WarehouseState
 
 from warehouse.warehouse_problemforSearch import WarehouseProblemSearch #adicionado
-from agentsearch.problem import Problem #adicionado
-from agentsearch.agent import Agent #adicionado
-from agentsearch.state import State #adicionado
 
 matplotlib.use("TkAgg")
 
@@ -630,24 +627,24 @@ class SearchSolver(threading.Thread):
         # TODO calculate pairs distances
         self.agent.search_method.stopped=True
         self.gui.problem_ga = WarehouseProblemGA(self.agent)
-
-        #para cada pair fazer o A*
-        #celula1 celula objetivo e metemos lá o fotrtlift
-        #calcular a distancia entre os pontos
-        #assumindo como ponto de partida o ponto ajdajacente ao ponto de interesse ->  ver a posição adjacente
-        #temos de ver se é uma encomenda e mandar a posição adjacente para o estado
-        #warehousestate->representa o estado do armazem
-        #for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
-
+        """
+        para cada pair fazer o A*
+        celula1 celula objetivo e metemos lá o fotrtlift
+        calcular a distancia entre os pontos
+        assumindo como ponto de partida o ponto ajdajacente ao ponto de interesse ->  ver a posição adjacente
+        temos de ver se é uma encomenda e mandar a posição adjacente para o estado
+        warehousestate->representa o estado do armazem
+        for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
+        """
 
         for pair in self.agent.pairs:#recebe o estado iniciado na celula1 e o goal celula 2
             estadoInicialCopiado = copy.deepcopy(self.gui.initial_state)  # faz deepcopy de um  estado incial, forklist na celula1
             estadoInicialCopiado.line_forklift = pair.cell1.line
             estadoInicialCopiado.column_forklift = pair.cell1.column
-            WarehouseProblemSearch(estadoInicialCopiado.line_forklift, estadoInicialCopiado.column_forklift)#Instanciar o warehouse_problem (estado inicial, célula objetivo)
-            self.gui.solution.cost = self.agent.solve_problem(self,self.text_problem)  # retorna o custo da solucao
+            problem = WarehouseProblemSearch(estadoInicialCopiado.line_forklift, estadoInicialCopiado.column_forklift)#Instanciar o warehouse_problem (estado inicial, célula objetivo)
+            self.gui.solution.cost = self.agent.solve_problem(problem)  # retorna o custo da solucao
             pair.value = self.gui.solution.cost
-        return pair.value
+        self.gui.solution.cost
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                                 simulation=tk.DISABLED, stop_simulation=tk.DISABLED)
