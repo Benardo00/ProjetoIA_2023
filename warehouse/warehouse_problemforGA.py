@@ -4,15 +4,17 @@ from warehouse.warehouse_individual import WarehouseIndividual
 
 
 class WarehouseProblemGA(Problem):
-    def __init__(self, agent_search: WarehouseAgentSearch):
-        # TODO
+    def __init__(self, index: int ,agent_search: WarehouseAgentSearch ):
+        # Acho que está OK assim -- Renato
+        self.index = index
         self.forklifts = agent_search.forklifts
         self.products = agent_search.products
         self.agent_search = agent_search
 
     def generate_individual(self) -> "WarehouseIndividual":
-        # TODO
-        pass
+        new_individual = WarehouseIndividual(self, len(self.forklifts))
+        new_individual.swap_genes(self.index)
+        return new_individual
 
     def __str__(self):
         string = "# of forklifts: "
