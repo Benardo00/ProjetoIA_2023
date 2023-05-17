@@ -9,8 +9,8 @@ from agentsearch.action import Action
 
 class WarehouseState(State[Action]):
 
-    def __init__(self, matrix: ndarray, rows, columns):
-        super().__init__()
+    def __init__(self, matrix: ndarray, rows, columns): #ter que alterar o construtor, a matriz é sempre a mesma
+        super().__init__()                              #Posição do fortlift, vai definir o estado o resto é igual
 
         self.line_forklift = None
         self.column_forklift = None
@@ -32,7 +32,7 @@ class WarehouseState(State[Action]):
                     self.column_exit = j
 
 
-    def can_move_up(self) -> bool:
+    def can_move_up(self) -> bool:  #não precisamos de alterar o ques está na matriz, só precisamos de alterar a posição da empilhadora
         return self.line_forklift > 0 and self.matrix[self.line_forklift - 1][self.column_forklift] != constants.SHELF
         # Retorna True se a empilhadora não estiver na primeira linha do ambiente e se a célula acima dela não for uma prateleira.
 

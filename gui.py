@@ -18,10 +18,16 @@ from ga.genetic_operators.recombination2 import Recombination2
 from ga.genetic_operators.recombination_pmx import RecombinationPMX
 from ga.genetic_operators.mutation_insert import MutationInsert
 from ga.genetic_algorithm_thread import GeneticAlgorithmThread
+from search_methods.astar_search import AStarSearch
 from warehouse.warehouse_agent_search import WarehouseAgentSearch, read_state_from_txt_file
 from warehouse.warehouse_experiments_factory import WarehouseExperimentsFactory
 from warehouse.warehouse_problemforGA import WarehouseProblemGA
 from warehouse.warehouse_state import WarehouseState
+
+from warehouse.warehouse_problemforSearch import WarehouseProblemSearch #adicionado
+from agentsearch.problem import Problem #adicionado
+from agentsearch.agent import Agent #adicionado
+from agentsearch.state import State #adicionado
 
 matplotlib.use("TkAgg")
 
@@ -268,7 +274,7 @@ class Window(tk.Tk):
         if filename:
             matrix, num_rows, num_columns = read_state_from_txt_file(filename)
             self.initial_state = WarehouseState(matrix, num_rows, num_columns)
-            self.agent_search = WarehouseAgentSearch(WarehouseState(matrix, num_rows, num_columns))#vai imprimir o warehouseAgentsearch
+            self.agent_search = WarehouseAgentSearch(WarehouseState(matrix, num_rows, num_columns))#vai instanciar o warehouseAgentsearch
             self.solution = None
             self.text_problem.delete("1.0", "end")
             self.text_problem.insert(tk.END, str(self.initial_state) + "\n" + str(self.agent_search))
@@ -288,6 +294,8 @@ class Window(tk.Tk):
         self.agent_search.search_method.stopped=False
 
         self.text_problem.delete("1.0", "end")
+        self.text_problem.insert(tk.END, str(self.initial_state) + "\n" + str(self.agent_search) + "->" + str(self.solution))
+
 
         self.text_problem.insert(tk.END, "Running...\n")
 
@@ -614,6 +622,7 @@ class SearchSolver(threading.Thread):
         self.gui = gui
         self.agent = agent
 
+
     def stop(self):
         self.agent.stop()
 
@@ -621,28 +630,29 @@ class SearchSolver(threading.Thread):
         # TODO calculate pairs distances
         self.agent.search_method.stopped=True
         self.gui.problem_ga = WarehouseProblemGA(self.agent)
+
         #para cada pair fazer o A*
+        #celula1 celula objetivo e metemos lá o fotrtlift
         #calcular a distancia entre os pontos
-        #assumindo como ponto de partida o ponto ajdajacente ao ponto de interesse
+        #assumindo como ponto de partida o ponto ajdajacente ao ponto de interesse ->  ver a posição adjacente
+        #temos de ver se é uma encomenda e mandar a posição adjacente para o estado
         #warehousestate->representa o estado do armazem
-        pair=0
-        for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
-            self.agent.warehouse_state(pair.cell1, pair.cell2)
-
-            pair.value = self.agent.search_method(pair.cell1, pair.cell2)
-
-        return self.pairs
-
-        str = "Pairs:\n"#vai ser ter que alterar
-        for p in self.pairs:
-            str += f"{p}\n"
-        return str
+        #for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
 
 
+        for pair in self.agent.pairs:#recebe o estado iniciado na celula1 e o goal celula 2
+            estadoInicialCopiado = copy.deepcopy(self.gui.initial_state)  # faz deepcopy de um  estado incial, forklist na celula1
+            estadoInicialCopiado.line_forklift = pair.cell1.line
+            estadoInicialCopiado.column_forklift = pair.cell1.column
+            WarehouseProblemSearch(estadoInicialCopiado.line_forklift, estadoInicialCopiado.column_forklift)#Instanciar o warehouse_problem (estado inicial, célula objetivo)
+            self.gui.solution.cost = self.agent.solve_problem(self,self.text_problem)  # retorna o custo da solucao
+            pair.value = self.gui.solution.cost
+        return pair.value
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                                 simulation=tk.DISABLED, stop_simulation=tk.DISABLED)
         self.gui.frame.event_generate('<<AgentStopped>>', when='tail')
+
 
 class SolutionRunner(threading.Thread):
 

@@ -30,3 +30,4 @@ class WarehouseIndividual(IntVectorIndividual):
         new_instance.fitness = self.fitness
         # TODO
         return new_instance
+
