@@ -51,13 +51,16 @@ class WarehouseIndividual(IntVectorIndividual):
         return fitness
 
     def obtain_all_path(self):
-        # TODO 
+        # Inicializa as variáveis para rastrear a distância total e o total de colisões
+        # TODO
+
         pass
 
     def __str__(self):
         string = 'Fitness: ' + f'{self.fitness}' + '\n'
         string += str (self.genome) + "\n\n"
-        # TODO
+        for i in range(self.num_genes):
+            string += str(self.problem.warehouse_items[i]) + "\n"
         return string
 
     def better_than(self, other: "WarehouseIndividual") -> bool:
@@ -68,6 +71,7 @@ class WarehouseIndividual(IntVectorIndividual):
         new_instance = self.__class__(self.problem, self.num_genes)
         new_instance.genome = self.genome.copy()
         new_instance.fitness = self.fitness
-        # TODO
+        new_instance.total_distance = self.total_distance
+        new_instance.total_collisions = self.total_collisions
         return new_instance
 
