@@ -31,5 +31,3 @@ class Problem(ABC, Generic[S]):
         for action in path:
             cost += action.cost
         return cost
-
-

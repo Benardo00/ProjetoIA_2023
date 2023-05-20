@@ -10,6 +10,7 @@ import queue
 import threading
 
 import constants
+import warehouse.pair
 from ga.genetic_operators.mutation2 import Mutation2
 from ga.genetic_operators.mutation3 import Mutation3
 from ga.genetic_operators.recombination3 import Recombination3
@@ -23,7 +24,7 @@ from warehouse.warehouse_agent_search import WarehouseAgentSearch, read_state_fr
 from warehouse.warehouse_experiments_factory import WarehouseExperimentsFactory
 from warehouse.warehouse_problemforGA import WarehouseProblemGA
 from warehouse.warehouse_state import WarehouseState
-
+from warehouse.pair import Pair
 from warehouse.warehouse_problemforSearch import WarehouseProblemSearch #adicionado
 
 matplotlib.use("TkAgg")
@@ -291,13 +292,13 @@ class Window(tk.Tk):
         self.agent_search.search_method.stopped=False
 
         self.text_problem.delete("1.0", "end")
-        self.text_problem.insert(tk.END, str(self.initial_state) + "\n" + str(self.agent_search) + "->" + str(self.solution))
-
 
         self.text_problem.insert(tk.END, "Running...\n")
 
-        self.solution = None
+        SearchSolver.run(SearchSolver(self, self.agent_search))
+        #self.text_problem.insert(tk.END, str("Custos da soluçõs: ") +  "\n" + str(self.initial_state) + "\n" + str(self.custo))
 
+        self.solution = None
         self.manage_buttons(data_set=tk.DISABLED, runSearch=tk.DISABLED, runGA=tk.DISABLED, stop=tk.NORMAL,
                             open_experiments=tk.DISABLED, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                             simulation=tk.DISABLED, stop_simulation=tk.DISABLED)
@@ -625,7 +626,7 @@ class SearchSolver(threading.Thread):
 
     def run(self): #onde devemos calcular as distancias entre os pares de pontos
         # TODO calculate pairs distances
-        self.agent.search_method.stopped=True
+        self.agent.search_method.stopped = True
         self.gui.problem_ga = WarehouseProblemGA(self.agent)
         """
         para cada pair fazer o A*
@@ -636,15 +637,16 @@ class SearchSolver(threading.Thread):
         warehousestate->representa o estado do armazem
         for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
         """
-
-        for pair in self.agent.pairs:#recebe o estado iniciado na celula1 e o goal celula 2
+        for pair in self.agent.pairs: #recebe o estado iniciado na celula1 e o goal celula 2
             estadoInicialCopiado = copy.deepcopy(self.gui.initial_state)  # faz deepcopy de um  estado incial, forklist na celula1
             estadoInicialCopiado.line_forklift = pair.cell1.line
             estadoInicialCopiado.column_forklift = pair.cell1.column
-            problem = WarehouseProblemSearch(estadoInicialCopiado.line_forklift, estadoInicialCopiado.column_forklift)#Instanciar o warehouse_problem (estado inicial, célula objetivo)
-            self.gui.solution.cost = self.agent.solve_problem(problem)  # retorna o custo da solucao
+            problem = WarehouseProblemSearch(estadoInicialCopiado, pair.cell2)#Instanciar o warehouse_problem (estado inicial, célula objetivo)
+            self.gui.solution = self.agent.solve_problem(problem)  #retorna o custo da solucao
             pair.value = self.gui.solution.cost
-        self.gui.solution.cost
+            print("Custo da solução: ", pair)
+            self.gui.text_problem.insert(tk.END, str("Custo da solução: ") + str(pair) + "\n")
+
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                                 simulation=tk.DISABLED, stop_simulation=tk.DISABLED)

@@ -11,9 +11,14 @@ class WarehouseIndividual(IntVectorIndividual):
         self.total_distance = None
         self.total_collisions = None
         self.collision_penalty = 1000
-        # TODO : Checar se isso está bom (Renato)
+        # TODO : Checar se isso está bom (Renato)#
         pass
-
+    """
+genoma tem que ser de tamanho fixo,
+312
+trocar o 2 com 1
+trocar as coisas de lugar. trocar 2 a 2 para se mantarem na lista
+    """
     def compute_fitness(self) -> float:
         # Inicializa as variáveis para rastrear a distância total e o total de colisões
         self.total_distance = 0
