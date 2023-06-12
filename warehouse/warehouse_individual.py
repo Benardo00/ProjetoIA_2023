@@ -11,34 +11,25 @@ class WarehouseIndividual(IntVectorIndividual):
         self.total_distance = None
         self.total_collisions = None
         self.collision_penalty = 1000
-        # TODO : Checar se isso está bom (Renato)#
+        # TODO
         pass
-    """
-genoma tem que ser de tamanho fixo,
-312
-trocar o 2 com 1
-trocar as coisas de lugar. trocar 2 a 2 para se mantarem na lista
-    """
-    def compute_fitness(self) -> float:
+
+    def compute_fitness(self) -> float:#ver o custo do caminho inteiro
         # Inicializa as variáveis para rastrear a distância total e o total de colisões
         self.total_distance = 0
         self.total_collisions = 0
-
         # loop para ver o caminho do agente
         for agent_path in self.genome:
             agent_position = agent_path[0] # posição inicial do agente
             agent_distance = 0 # distancia percorrida pelo agente
             agent_collisions = 0 # numero de colisões do agente
-
             # loop para ver o caminho do agente
             for i in range(1, len(agent_path)):
                 current_position = agent_path[i] # posição atual do agente
                 previous_position = agent_path[i - 1] # posição anterior do agente
-
-                # calcula a distancia
-                distance = abs(current_position[0] - previous_position[0]) + \
-                           abs(current_position[1] - previous_position[1])
-                agent_distance += distance # atualiza a distancia percorrida pelo agente
+                """
+                Temos que ir buscar os pares calculados anteriormente
+                """
 
                 # verifica se o agente colidiu com outro agente
                 for other_agent_path in self.genome:
@@ -54,11 +45,18 @@ trocar as coisas de lugar. trocar 2 a 2 para se mantarem na lista
         self.fitness = fitness
 
         return fitness
+        # devolve 2 valores:
+        # -uma lista de dimensao igual ao num de fokrlifts; que contem as listas de celulas percorrididos por cada um dos forklifts nesta solução;
+        # -o num maximo de cells percorridos por um dos forklifts, ou seja, a dimensao da maior lista de cell.
 
-    def obtain_all_path(self):
+
+    def obtain_all_path(self):#podemos usar no compute fitness
         # Inicializa as variáveis para rastrear a distância total e o total de colisões
         # TODO
-
+        # calcula os caminhos completos percorridos pelos fotklifts. Devolve um lista de células (as células percorridas por cada forklift);
+        # e o numero maximo de passos
+        # necessarios para percorrer todos os caminhos (i.e o numero de celulas do caminho mais longo percorrido por um forklift)
+        #devolve o caminho do forklift que demora mais tempo a percorrer
         pass
 
     def __str__(self):
@@ -76,7 +74,7 @@ trocar as coisas de lugar. trocar 2 a 2 para se mantarem na lista
         new_instance = self.__class__(self.problem, self.num_genes)
         new_instance.genome = self.genome.copy()
         new_instance.fitness = self.fitness
-        new_instance.total_distance = self.total_distance
-        new_instance.total_collisions = self.total_collisions
+        new_instance.total_distance = self.total_distance #foi adicionado
+        new_instance.total_collisions = self.total_collisions #foi adicionado
         return new_instance
 

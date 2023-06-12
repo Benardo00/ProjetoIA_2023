@@ -4,16 +4,21 @@ from warehouse.warehouse_individual import WarehouseIndividual
 
 
 class WarehouseProblemGA(Problem):
+
+    SIMPLE_FITNESS = 0 #foi acrescentado
+    PENALTY_FITNESS = 1
     def __init__(self,agent_search: WarehouseAgentSearch ):
-        # Acho que está OK assim -- Renato
+
         #self.index = index
         self.forklifts = agent_search.forklifts
         self.products = agent_search.products
         self.agent_search = agent_search
 
-    def generate_individual(self) -> "WarehouseIndividual":
-        new_individual = WarehouseIndividual(self, len(self.forklifts))
-        new_individual.swap_genes(self.index)
+    def generate_individual(self) -> "WarehouseIndividual":#criar o genoma aqui
+        new_individual = WarehouseIndividual(self, len(self.forklifts)) #representar o genoma como um vetor de inteiros
+        numGenes = len(self.products) + (len(self.forklifts) - 1)
+        for i in range(numGenes+1):
+            new_individual.genome[i] = self.products[i]
         return new_individual
 
     def __str__(self):

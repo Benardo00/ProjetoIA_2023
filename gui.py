@@ -24,8 +24,7 @@ from warehouse.warehouse_agent_search import WarehouseAgentSearch, read_state_fr
 from warehouse.warehouse_experiments_factory import WarehouseExperimentsFactory
 from warehouse.warehouse_problemforGA import WarehouseProblemGA
 from warehouse.warehouse_state import WarehouseState
-from warehouse.pair import Pair
-from warehouse.warehouse_problemforSearch import WarehouseProblemSearch #adicionado
+from warehouse.warehouse_problemforSearch import WarehouseProblemSearch
 
 matplotlib.use("TkAgg")
 
@@ -272,7 +271,8 @@ class Window(tk.Tk):
         if filename:
             matrix, num_rows, num_columns = read_state_from_txt_file(filename)
             self.initial_state = WarehouseState(matrix, num_rows, num_columns)
-            self.agent_search = WarehouseAgentSearch(WarehouseState(matrix, num_rows, num_columns))#vai instanciar o warehouseAgentsearch
+            self.agent_search = WarehouseAgentSearch(
+                WarehouseState(matrix, num_rows, num_columns))  # vai instanciar o warehouseAgentsearch
             self.solution = None
             self.text_problem.delete("1.0", "end")
             self.text_problem.insert(tk.END, str(self.initial_state) + "\n" + str(self.agent_search))
@@ -289,14 +289,14 @@ class Window(tk.Tk):
 
     def runSearch_button_clicked(self):
 
-        self.agent_search.search_method.stopped=False
+        self.agent_search.search_method.stopped = False
 
         self.text_problem.delete("1.0", "end")
 
         self.text_problem.insert(tk.END, "Running...\n")
 
         SearchSolver.run(SearchSolver(self, self.agent_search))
-        #self.text_problem.insert(tk.END, str("Custos da soluçõs: ") +  "\n" + str(self.initial_state) + "\n" + str(self.custo))
+        # self.text_problem.insert(tk.END, str("Custos da soluçõs: ") +  "\n" + str(self.initial_state) + "\n" + str(self.custo))
 
         self.solution = None
         self.manage_buttons(data_set=tk.DISABLED, runSearch=tk.DISABLED, runGA=tk.DISABLED, stop=tk.NORMAL,
@@ -317,7 +317,7 @@ class Window(tk.Tk):
             return
 
         selection_method = Tournament(int(self.entry_tournament_size.get()))
-        recombination_methods_index = self.combo_recombination_methods.current()
+        recombination_methods_index = self.combo_mutation_methods.current()  # Foi alterado de recombination para mutation
         recombination_method = RecombinationPMX(
             float(self.entry_recombination_prob.get())) if recombination_methods_index == 0 else \
             Recombination2(float(self.entry_recombination_prob.get())) if recombination_methods_index == 1 else \
@@ -375,7 +375,7 @@ class Window(tk.Tk):
             if done:
                 self.queue.queue.clear()
                 self.after_cancel(self.after_id)
-                self.after_id= None
+                self.after_id = None
                 self.solution_runner = None
                 self.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                     open_experiments=tk.NORMAL, run_experiments=tk.DISABLED,
@@ -414,7 +414,6 @@ class Window(tk.Tk):
             self.solver = None
             return
 
-
         if self.solution_runner is not None and self.solution_runner.thread_running:
             self.solution_runner.stop()
             self.queue.queue.clear()
@@ -435,9 +434,6 @@ class Window(tk.Tk):
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                                 simulation=tk.DISABLED, stop_simulation=tk.DISABLED)
             self.genetic_algorithm = None
-
-
-
 
     def open_experiments_button_clicked(self):
         filename = fd.askopenfilename(initialdir='.')
@@ -620,11 +616,10 @@ class SearchSolver(threading.Thread):
         self.gui = gui
         self.agent = agent
 
-
     def stop(self):
         self.agent.stop()
 
-    def run(self): #onde devemos calcular as distancias entre os pares de pontos
+    def run(self):  # onde devemos calcular as distancias entre os pares de pontos
         # TODO calculate pairs distances
         self.agent.search_method.stopped = True
         self.gui.problem_ga = WarehouseProblemGA(self.agent)
@@ -637,20 +632,24 @@ class SearchSolver(threading.Thread):
         warehousestate->representa o estado do armazem
         for pair in self.pairs:#nao interessa onde esta o fotrtlift, ele n e um obstaculo
         """
-        for pair in self.agent.pairs: #recebe o estado iniciado na celula1 e o goal celula 2
-            estadoInicialCopiado = copy.deepcopy(self.gui.initial_state)  # faz deepcopy de um  estado incial, forklist na celula1
+
+        for pair in self.agent.pairs:  # recebe o estado iniciado na celula1 e o goal celula 2
+            estadoInicialCopiado = copy.deepcopy(
+                self.gui.initial_state)  # faz deepcopy de um  estado incial, forklist na celula1
             estadoInicialCopiado.line_forklift = pair.cell1.line
             estadoInicialCopiado.column_forklift = pair.cell1.column
-            problem = WarehouseProblemSearch(estadoInicialCopiado, pair.cell2)#Instanciar o warehouse_problem (estado inicial, célula objetivo)
-            self.gui.solution = self.agent.solve_problem(problem)  #retorna o custo da solucao
+            problem = WarehouseProblemSearch(estadoInicialCopiado,
+                                             pair.cell2)  # Instanciar o warehouse_problem (estado inicial, célula objetivo)
+            self.gui.solution = self.agent.solve_problem(problem)  # retorna o custo da solucao
             pair.value = self.gui.solution.cost
             print("Custo da solução: ", pair)
             self.gui.text_problem.insert(tk.END, str("Custo da solução: ") + str(pair) + "\n")
-
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                                 simulation=tk.DISABLED, stop_simulation=tk.DISABLED)
         self.gui.frame.event_generate('<<AgentStopped>>', when='tail')
+
+
 
 
 class SolutionRunner(threading.Thread):
@@ -691,4 +690,3 @@ class SolutionRunner(threading.Thread):
                 # TODO put the catched products in black
             self.gui.queue.put((copy.deepcopy(self.state), step, False))
         self.gui.queue.put((None, steps, True))  # Done
-
