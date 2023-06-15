@@ -1,21 +1,13 @@
 class Pair:
-    def __init__(self, cell1, cell2, value):
+    def __init__(self, cell1, cell2, value, solution):
         self.cell1 = cell1
         self.cell2 = cell2
         self.value = value
-        self.pair_path = []
+        #self.pair_path = []
+        self.solution = solution
         # self.pair_path adicionar
 
-        """
-                def get_actions(self) -> list:
-            valid_actions = []
-            for action in self.actions:
-                if action.is_valid(action):
-                    valid_actions.append(action)
-            return valid_actions temos que arranjar maneira de guardar as acoes num vetor, deve ser algo do genero
-        
-        
-        """
+
         #guardar a lista de celulas correspondentes aquele troço
 
         #print(self.value)

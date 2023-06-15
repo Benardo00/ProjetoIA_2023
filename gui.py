@@ -642,14 +642,13 @@ class SearchSolver(threading.Thread):
                                              pair.cell2)  # Instanciar o warehouse_problem (estado inicial, célula objetivo)
             self.gui.solution = self.agent.solve_problem(problem)  # retorna o custo da solucao
             pair.value = self.gui.solution.cost
+            pair.solution = self.gui.solution#guardar a solução no par
             print("Custo da solução: ", pair)
             self.gui.text_problem.insert(tk.END, str("Custo da solução: ") + str(pair) + "\n")
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,
                                 simulation=tk.DISABLED, stop_simulation=tk.DISABLED)
         self.gui.frame.event_generate('<<AgentStopped>>', when='tail')
-
-
 
 
 class SolutionRunner(threading.Thread):
@@ -682,6 +681,11 @@ class SolutionRunner(threading.Thread):
                         self.state.matrix[old_cell[j].line][old_cell[j].column] = constants.EMPTY
                     new_cell = forklift_path[j][step + 1]
                     new_cells.append(new_cell)
+
+                    #if new_cell.line == constants.PRODUCT_CATCH and new_cell.column == constants.PRODUCT_CATCH:
+                        #self.state.matrix[new_cell.line][
+                            #new_cell.column] = constants.COLORSHELFPRODUCTCATCH  # Use the appropriate code for black color
+
                     self.state.matrix[new_cell.line][new_cell.column] = constants.FORKLIFT
                     old_cell[j] = new_cell
                 else:

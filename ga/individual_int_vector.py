@@ -14,8 +14,9 @@ class IntVectorIndividual(Individual):
         quantPics = len(self.problem.products)
         num_genes = quantPics+(quantForklifts-1)
         self.genome = np.full(num_genes, 0, dtype=int)#preenche os restantes com 0´s
-
         # TODO
+
+
 
     def swap_genes(self, other, index: int):
         aux = self.genome[index]

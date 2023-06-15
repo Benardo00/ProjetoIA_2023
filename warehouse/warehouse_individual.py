@@ -1,3 +1,5 @@
+import numpy as np
+
 from ga.individual_int_vector import IntVectorIndividual
 
 class WarehouseIndividual(IntVectorIndividual):
@@ -57,6 +59,30 @@ class WarehouseIndividual(IntVectorIndividual):
         # e o numero maximo de passos
         # necessarios para percorrer todos os caminhos (i.e o numero de celulas do caminho mais longo percorrido por um forklift)
         #devolve o caminho do forklift que demora mais tempo a percorrer
+
+        # Inicializa as variáveis para rastrear os caminhos e o número máximo de passos
+        paths = []  # Lista de células percorridas por cada empilhadora
+        max_steps = 0  # Número máximo de passos entre todos os caminhos
+
+        # Percorre cada empilhadora no problema
+        for forklift_index in range(self.num_genes):
+            current_position = self.problem.initial_state.get_forklift_position(
+                forklift_index)  # Posição inicial da empilhadeira
+            path = [current_position]  # Lista para armazenar as células percorridas pela empilhadeira
+            steps = 0  # Número de passos percorridos pela empilhadeira
+
+            # Executa os movimentos até atingir o objetivo
+            while not self.problem.is_goal(current_position):
+                available_actions = self.problem.get_actions(current_position)  # Obtém as ações disponíveis para a empilhadora
+                action = np.random.choice(available_actions)    # Escolhe uma ação aleatória
+                new_position = self.problem.get_successor(current_position, action)    # Executa a ação e atualiza a posição
+                path.append(new_position)  # Adiciona a nova posição ao caminho da empilhadeira
+                steps += 1
+                current_position = new_position  # Atualiza a posição atual da empilhadeira
+            paths.append(path)  # Adiciona o caminho da empilhadeira à lista de caminhos
+            max_steps = max(max_steps, steps)  # Atualiza o número máximo de passos se necessário
+
+        return paths, max_steps
         pass
 
     def __str__(self):
