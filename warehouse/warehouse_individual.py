@@ -17,6 +17,7 @@ class WarehouseIndividual(IntVectorIndividual):
         pass
 
     def compute_fitness(self) -> float:#ver o custo do caminho inteiro
+        """
         # Inicializa as variáveis para rastrear a distância total e o total de colisões
         self.total_distance = 0
         self.total_collisions = 0
@@ -29,9 +30,9 @@ class WarehouseIndividual(IntVectorIndividual):
             for i in range(1, len(agent_path)):
                 current_position = agent_path[i] # posição atual do agente
                 previous_position = agent_path[i - 1] # posição anterior do agente
-                """
+
                 Temos que ir buscar os pares calculados anteriormente
-                """
+
 
                 # verifica se o agente colidiu com outro agente
                 for other_agent_path in self.genome:
@@ -47,6 +48,38 @@ class WarehouseIndividual(IntVectorIndividual):
         self.fitness = fitness
 
         return fitness
+        """
+
+        solution =self.pair.solution
+        num_forklifts = len(solution)
+
+        max_cells = 0
+        forklift_cells = []
+
+        for forklift in solution:
+            path = []  # List to store the cells visited by the current forklift
+            current_cell = forklift['start_cell']
+            path.append(current_cell)
+
+            for movement in forklift['movements']:
+                if movement == 'up':
+                    current_cell = (current_cell[0] - 1, current_cell[1])
+                elif movement == 'down':
+                    current_cell = (current_cell[0] + 1, current_cell[1])
+                elif movement == 'left':
+                    current_cell = (current_cell[0], current_cell[1] - 1)
+                elif movement == 'right':
+                    current_cell = (current_cell[0], current_cell[1] + 1)
+
+                path.append(current_cell)
+
+            forklift_cells.append(path)
+            max_cells = max(max_cells, len(path))
+
+        return forklift_cells, max_cells
+
+
+
         # devolve 2 valores:
         # -uma lista de dimensao igual ao num de fokrlifts; que contem as listas de celulas percorrididos por cada um dos forklifts nesta solução;
         # -o num maximo de cells percorridos por um dos forklifts, ou seja, a dimensao da maior lista de cell.
