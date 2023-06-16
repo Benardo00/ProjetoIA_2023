@@ -1,12 +1,10 @@
 class Pair:
-    def __init__(self, cell1, cell2, value, solution):
+    def __init__(self, cell1, cell2):
         self.cell1 = cell1
         self.cell2 = cell2
-        self.value = value
-        #self.pair_path = []
-        self.solution = solution
+        self.value = 0
+        self.solution = None
         # self.pair_path adicionar
-
 
         #guardar a lista de celulas correspondentes aquele troço
 

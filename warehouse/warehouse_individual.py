@@ -6,7 +6,6 @@ class WarehouseIndividual(IntVectorIndividual):
 
     def __init__(self, problem: "WarehouseProblem", num_genes: int):
         super().__init__(problem, num_genes)
-        self.genome = []
         self.fitness = 0
         self.problem = problem
         self.num_genes = num_genes
@@ -17,12 +16,30 @@ class WarehouseIndividual(IntVectorIndividual):
         pass
 
     def compute_fitness(self) -> float:#ver o custo do caminho inteiro
-        """
+
         # Inicializa as variáveis para rastrear a distância total e o total de colisões
         self.total_distance = 0
         self.total_collisions = 0
+        self.fitness = 0
         # loop para ver o caminho do agente
+        genome = []
+        aux = []
+        for i in range(len(self.genome)):
+
+            if self.genome[i] >= len(self.problem.products) +1:
+                genome.append(aux.copy())
+                aux.clear()
+
+
+            aux.append(self.genome[i])
+            if i == len(self.genome)-1:#protecao se nao encontar nenhum separador
+                genome.append(aux.copy())
+                aux.clear()
+
+
+        """
         for agent_path in self.genome:
+           
             agent_position = agent_path[0] # posição inicial do agente
             agent_distance = 0 # distancia percorrida pelo agente
             agent_collisions = 0 # numero de colisões do agente
@@ -31,7 +48,7 @@ class WarehouseIndividual(IntVectorIndividual):
                 current_position = agent_path[i] # posição atual do agente
                 previous_position = agent_path[i - 1] # posição anterior do agente
 
-                Temos que ir buscar os pares calculados anteriormente
+                #Temos que ir buscar os pares calculados anteriormente
 
 
                 # verifica se o agente colidiu com outro agente
@@ -48,41 +65,15 @@ class WarehouseIndividual(IntVectorIndividual):
         self.fitness = fitness
 
         return fitness
+
         """
-
-        solution =self.pair.solution
-        num_forklifts = len(solution)
-
-        max_cells = 0
-        forklift_cells = []
-
-        for forklift in solution:
-            path = []  # List to store the cells visited by the current forklift
-            current_cell = forklift['start_cell']
-            path.append(current_cell)
-
-            for movement in forklift['movements']:
-                if movement == 'up':
-                    current_cell = (current_cell[0] - 1, current_cell[1])
-                elif movement == 'down':
-                    current_cell = (current_cell[0] + 1, current_cell[1])
-                elif movement == 'left':
-                    current_cell = (current_cell[0], current_cell[1] - 1)
-                elif movement == 'right':
-                    current_cell = (current_cell[0], current_cell[1] + 1)
-
-                path.append(current_cell)
-
-            forklift_cells.append(path)
-            max_cells = max(max_cells, len(path))
-
-        return forklift_cells, max_cells
-
-
-
         # devolve 2 valores:
         # -uma lista de dimensao igual ao num de fokrlifts; que contem as listas de celulas percorrididos por cada um dos forklifts nesta solução;
         # -o num maximo de cells percorridos por um dos forklifts, ou seja, a dimensao da maior lista de cell.
+
+
+
+
 
 
     def obtain_all_path(self):#podemos usar no compute fitness
@@ -121,8 +112,10 @@ class WarehouseIndividual(IntVectorIndividual):
     def __str__(self):
         string = 'Fitness: ' + f'{self.fitness}' + '\n'
         string += str (self.genome) + "\n\n"
+        """
         for i in range(self.num_genes):
             string += str(self.problem.warehouse_items[i]) + "\n"
+        """
         return string
 
     def better_than(self, other: "WarehouseIndividual") -> bool:

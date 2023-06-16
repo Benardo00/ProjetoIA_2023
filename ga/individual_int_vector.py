@@ -9,10 +9,7 @@ from ga.individual import Individual
 class IntVectorIndividual(Individual):
 
     def __init__(self, problem: Problem, num_genes: int):#criaçao do vetor de inteiros
-        super().__init__(problem, num_genes, )
-        quantForklifts = len(self.problem.forklifts)
-        quantPics = len(self.problem.products)
-        num_genes = quantPics+(quantForklifts-1)
+        super().__init__(problem, num_genes)
         self.genome = np.full(num_genes, 0, dtype=int)#preenche os restantes com 0´s
         # TODO
 

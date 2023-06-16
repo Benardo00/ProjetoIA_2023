@@ -33,17 +33,17 @@ class WarehouseAgentSearch(Agent):
 
         for a in self.forklifts:
             for p in self.products:
-                self.pairs.append(Pair(a, p, 0, 0))#foi acrescentado o 0 para o custo
+                self.pairs.append(Pair(a, p))
 
         for i in range(len(self.products) - 1):
             for j in range(i + 1, len(self.products)):
-                self.pairs.append(Pair(self.products[i], self.products[j], 0, 0))#foi acrescentado o 0 para o custo
+                self.pairs.append(Pair(self.products[i], self.products[j]))
 
         for p in self.products:
-            self.pairs.append(Pair(p, self.exit, 0, 0))#foi acrescentado o 0 para o custo
+            self.pairs.append(Pair(p, self.exit))
 
         for a in self.forklifts:
-            self.pairs.append(Pair(a, self.exit, 0, 0))
+            self.pairs.append(Pair(a, self.exit))
 
     def __str__(self) -> str:#para cada pair imprime o tostring do par
         str = "Pairs:\n"

@@ -1,3 +1,5 @@
+import numpy as np
+
 from ga.problem import Problem
 from warehouse.warehouse_agent_search import WarehouseAgentSearch
 from warehouse.warehouse_individual import WarehouseIndividual
@@ -17,18 +19,13 @@ class WarehouseProblemGA(Problem):
     def generate_individual(self) -> "WarehouseIndividual":#criar o genoma aqui
         numGenes = len(self.products) + (len(self.forklifts) - 1)
         new_individual = WarehouseIndividual(self, numGenes) #representar o genoma como um vetor de inteiros
-        """
-        for i in range(numGenes):
-            
-        return new_individual
 
-        
-        encomendas = self.agent_search.products
-        for gene in range(len(self.genome)):
-            ultima_encomenda = encomendas[-1]
-        forklift = ultima_encomenda + 1
-        self.genome = encomendas + [forklift]
-        """
+        for i in range(numGenes):
+            new_individual.genome[i] = i+1#comecar no1
+
+        np.random.shuffle(new_individual.genome)#baralhar o
+
+        return new_individual
 
 
     def __str__(self):
