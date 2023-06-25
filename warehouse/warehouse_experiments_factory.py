@@ -1,3 +1,4 @@
+import copy
 from experiments.experiments_factory import ExperimentsFactory
 from experiments.experiment import Experiment
 from experiments.experiment_listener import ExperimentListener
@@ -13,6 +14,7 @@ from experiments_statistics.statistic_best_in_run import StatisticBestInRun
 from experiments_statistics.statistic_best_average import StatisticBestAverage
 from warehouse.warehouse_agent_search import read_state_from_txt_file, WarehouseAgentSearch
 from warehouse.warehouse_problemforGA import WarehouseProblemGA
+from warehouse.warehouse_problemforSearch import WarehouseProblemSearch
 from warehouse.warehouse_state import WarehouseState
 
 
@@ -61,22 +63,31 @@ class WarehouseExperimentsFactory(ExperimentsFactory):
 
         # PROBLEM
         matrix, num_rows, num_columns = read_state_from_txt_file(self.get_parameter_value("Problem_file"))
-
         agent_search = WarehouseAgentSearch(WarehouseState(matrix, num_rows, num_columns))
         # TODO calculate pair distances
         self.problem = WarehouseProblemGA(agent_search)
+
+        for pair in agent_search.pairs:
+            estadoInicialCopiado = copy.deepcopy(
+                agent_search.initial_environment)
+            estadoInicialCopiado.line_forklift = pair.cell1.line
+            estadoInicialCopiado.column_forklift = pair.cell1.column
+            problem = WarehouseProblemSearch(estadoInicialCopiado, pair.cell2)
+            agent_search.solution = agent_search.solve_problem(problem)  # retorna o custo da solucao
+            pair.value = agent_search.solution
+            pair.solution = agent_search.solution
 
         experiment_textual_representation = self.build_experiment_textual_representation()
         experiment_header = self.build_experiment_header()
         experiment_configuration_values = self.build_experiment_values()
 
         self.experiment = Experiment(
-                self,
-                self.num_runs,
-                self.problem,
-                experiment_textual_representation,
-                experiment_header,
-                experiment_configuration_values)
+            self,
+            self.num_runs,
+            self.problem,
+            experiment_textual_representation,
+            experiment_header,
+            experiment_configuration_values)
 
         self.statistics.clear()
         for statistic_name in self.statistics_names:
@@ -88,12 +99,12 @@ class WarehouseExperimentsFactory(ExperimentsFactory):
 
     def generate_ga_instance(self, seed: int) -> GeneticAlgorithm:
         ga = GeneticAlgorithm(
-                seed,
-                self.population_size,
-                self.max_generations,
-                self.selection_method,
-                self.recombination_method,
-                self.mutation_method
+            seed,
+            self.population_size,
+            self.max_generations,
+            self.selection_method,
+            self.recombination_method,
+            self.mutation_method
         )
 
         for statistic in self.statistics:

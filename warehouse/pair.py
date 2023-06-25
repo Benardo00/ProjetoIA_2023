@@ -4,6 +4,7 @@ class Pair:
         self.cell2 = cell2
         self.value = 0
         self.solution = None
+
         # self.pair_path adicionar
 
         #guardar a lista de celulas correspondentes aquele troço

@@ -1,0 +1,80 @@
+Population size:	Max generations: 	Selection: 	Recombination: 	Mutation:		Fitness:
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		149
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		152
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		138
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		137
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		126
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+200	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+300	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+300	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.025)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.05)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.7)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69933210>		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE68F90550>		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69CBB510>		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE68F677D0>		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.025)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.05)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.1)		10
+50	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.7)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.025)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.05)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.7)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE68FA0DD0>		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69A3AB50>		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69959090>		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE5031C5D0>		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.025)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.05)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.1)		10
+50	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.7)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.025)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.05)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.7)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69D952D0>		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69A5BA90>		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69945890>		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE68F92610>		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.025)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.05)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.1)		10
+100	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.7)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.025)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.05)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Insert Mutation (0.7)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69C3CB50>		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69678050>		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69A4B450>		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE5031C5D0>		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.025)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.05)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.1)		10
+100	100	Tournament selection(4)	PMX recombination (0.7)	Mutation 3 (0.7)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.025)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.05)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.1)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Insert Mutation (0.7)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE6AE3D590>		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE69D224D0>		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE68F65790>		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	<ga.genetic_operators.mutation2.Mutation2 object at 0x000002CE68F677D0>		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.025)		10
+200	100	Tournament selection(2)	PMX recombination (0.7)	Mutation 3 (0.05)		10

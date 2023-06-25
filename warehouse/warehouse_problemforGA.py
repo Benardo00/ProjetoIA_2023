@@ -15,6 +15,8 @@ class WarehouseProblemGA(Problem):
         self.forklifts = agent_search.forklifts
         self.products = agent_search.products
         self.agent_search = agent_search
+        self.exit = agent_search.exit
+        self.pairs = self.agent_search.pairs
 
     def generate_individual(self) -> "WarehouseIndividual":#criar o genoma aqui
         numGenes = len(self.products) + (len(self.forklifts) - 1)
@@ -23,7 +25,7 @@ class WarehouseProblemGA(Problem):
         for i in range(numGenes):
             new_individual.genome[i] = i+1#comecar no1
 
-        np.random.shuffle(new_individual.genome)#baralhar o
+        np.random.shuffle(new_individual.genome)#baralhar
 
         return new_individual
 

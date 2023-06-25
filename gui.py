@@ -323,7 +323,7 @@ class Window(tk.Tk):
             Recombination2(float(self.entry_recombination_prob.get())) if recombination_methods_index == 1 else \
                 Recombination3(float(self.entry_recombination_prob.get()))
 
-        mutation_methods_index = self.combo_recombination_methods.current()
+        mutation_methods_index = self.combo_mutation_methods.current()
         mutation_method = MutationInsert(
             float(self.entry_mutation_prob.get())) if mutation_methods_index == 0 else \
             Mutation2(float(self.entry_mutation_prob.get())) if mutation_methods_index == 1 else \
@@ -643,7 +643,7 @@ class SearchSolver(threading.Thread):
             self.gui.solution = self.agent.solve_problem(problem)  # retorna o custo da solucao
             pair.value = self.gui.solution.cost
             pair.solution = self.gui.solution#guardar a solução no par
-            print("Custo da solução: ", pair)
+            #print("Custo da solução: ", pair) para debug
             self.gui.text_problem.insert(tk.END, str("Custo da solução: ") + str(pair) + "\n")
         self.gui.manage_buttons(data_set=tk.NORMAL, runSearch=tk.DISABLED, runGA=tk.NORMAL, stop=tk.DISABLED,
                                 open_experiments=tk.NORMAL, run_experiments=tk.DISABLED, stop_experiments=tk.DISABLED,

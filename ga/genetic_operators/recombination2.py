@@ -8,6 +8,9 @@ class Recombination2(Recombination):
 
     def recombine(self, ind1: Individual, ind2: Individual) -> None:
         # TODO
+
+
+
         pass
 
     def __str__(self):
