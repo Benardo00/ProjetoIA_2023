@@ -22,8 +22,7 @@ class Mutation2(Mutation):
         # TODO
         index1 = random.randint(0, len(ind.genome)-1)  # genoma começa no indice 1, foi a forma definida
         index2 = random.randint(0, len(ind.genome)-1)
-        if GeneticAlgorithm.rand.random() < self.probability:
-            ind.genome[index1], ind.genome[index2] = ind.genome[index2], ind.genome[index1]#confirmar
+        ind.genome[index1], ind.genome[index2] = ind.genome[index2], ind.genome[index1]#confirmar
 
 
 

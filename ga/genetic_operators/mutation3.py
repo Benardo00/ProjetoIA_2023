@@ -11,8 +11,7 @@ class Mutation3(Mutation):
     def mutate(self, ind: IntVectorIndividual) -> None:#mutação inversion
         # TODO
             start_index = random.randint(0, len(ind.genome) - 3)
-            if GeneticAlgorithm.rand.random() < self.probability:
-                ind.genome[start_index:start_index + 3] = ind.genome[start_index:start_index + 3][::-1]
+            ind.genome[start_index:start_index + 3] = ind.genome[start_index:start_index + 3][::-1]
 
     def __str__(self):
         return "Mutation 3 (" + f'{self.probability}' + ")"

@@ -14,7 +14,6 @@ class IntVectorIndividual(Individual):
         # TODO
 
 
-
     def swap_genes(self, other, index: int):
         aux = self.genome[index]
         self.genome[index] = other.genome[index]
