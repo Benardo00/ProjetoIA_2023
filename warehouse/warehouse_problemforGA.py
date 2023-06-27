@@ -10,8 +10,7 @@ class WarehouseProblemGA(Problem):
     SIMPLE_FITNESS = 0 #foi acrescentado
     PENALTY_FITNESS = 1
     def __init__(self,agent_search: WarehouseAgentSearch ):
-        #TODO deve faltar acrescentara algum parametro
-        #self.index = index
+
         self.forklifts = agent_search.forklifts
         self.products = agent_search.products
         self.agent_search = agent_search
@@ -23,9 +22,9 @@ class WarehouseProblemGA(Problem):
         new_individual = WarehouseIndividual(self, numGenes) #representar o genoma como um vetor de inteiros
 
         for i in range(numGenes):
-            new_individual.genome[i] = i+1#comecar no1
+            new_individual.genome[i] = i+1#comecar no indice 1
 
-        np.random.shuffle(new_individual.genome)#baralhar
+        np.random.shuffle(new_individual.genome)#baralhar o genoma
 
         return new_individual
 

@@ -19,8 +19,6 @@ class WarehouseIndividual(IntVectorIndividual):
         self.total_distance = 0
         self.total_collisions = 0  # acabou por não ser contabilizado na fitness
         self.fitness = 0
-        # Loop to track the path of each forklift
-        # loop para ver o caminho do agente
         genome = []
         aux = []
         for i in range(len(self.genome)):  # i e o nosso gene
@@ -31,11 +29,9 @@ class WarehouseIndividual(IntVectorIndividual):
             if i == len(self.genome) - 1:  # protecao se nao encontar nenhum separador
                 genome.append(aux.copy())
                 aux.clear()
-                # ----feito a partir daqui
         for index, fork in enumerate(genome):  # index e o numero do agente
             if len(fork) == 0:  # protecao se o fokrlift nao tiver produtos
-                # calcular a distancia do agente ate a saidaTODO, usando o index atual e o for dos pares
-                for pair in self.problem.pairs:
+                for pair in self.problem.pairs:  # calcular a distancia do agente ate a saida, usando o index atual e o for dos pares
                     if pair.cell1 == self.problem.forklifts[index]:
                         if pair.cell2 == self.problem.exit:
                             self.total_distance += pair.solution.cost
@@ -79,16 +75,18 @@ class WarehouseIndividual(IntVectorIndividual):
         return self.fitness, self.total_collisions
         # A fitness quando totalmente correta deve devolver2 valores:
         # -uma lista de dimensao igual ao num de fokrlifts; que contem as listas de celulas percorrididos por cada um dos forklifts nesta solução;
-        # -o num maximo de cells percorridos por um dos forklifts, ou seja, a dimensao da maior lista de cell.
+        # -o num máximo de cells percorridos por um dos forklifts, ou seja, a dimensao da maior lista de cell.
 
     def obtain_all_path(self):
         # calcula os caminhos completos percorridos pelos fotklifts. Devolve um lista de células (as células percorridas por cada forklift);
         # e o numero maximo de passos
         # necessarios para percorrer todos os caminhos (i.e o numero de celulas do caminho mais longo percorrido por um forklift)
         # devolve o caminho do forklift que demora mais tempo a percorrer
+
         paths = []  # Inicializar as variáveis para rastrear os caminhos e o número máximo de passos
         max_passos = 0
         longest_path = []
+        """
         for forklift_indice in range(self.num_genes):
             posiçãoAtual = self.problem.initial_state(
                 forklift_indice)
@@ -104,12 +102,13 @@ class WarehouseIndividual(IntVectorIndividual):
                 current_position = new_position
             paths.append(path)
             max_steps = max(max_passos, passos)
+        """
         return paths, max_passos, longest_path
 
     def __str__(self):
         string = 'Fitness: ' + f'{self.fitness}' + '\n\n'
-        # string += 'Total de Passos: ' + '\n'
-        # string += 'Caminho Mais Longo:' + '\n'
+        # string += 'Total de Passos: ' + '\n' não chegou a ser calculado
+        # string += 'Caminho Mais Longo:' + '\n'  não chegou a ser calculado
 
         if (self.total_collisions == 0):
             string += 'Total de Colisões: ' + 'Não Contabilizadas' + '\n\n'
@@ -129,6 +128,6 @@ class WarehouseIndividual(IntVectorIndividual):
         new_instance = self.__class__(self.problem, self.num_genes)
         new_instance.genome = self.genome.copy()
         new_instance.fitness = self.fitness
-        new_instance.total_distance = self.total_distance  # foi adicionado
-        new_instance.total_collisions = self.total_collisions  # foi adicionado
+        new_instance.total_distance = self.total_distance
+        new_instance.total_collisions = self.total_collisions
         return new_instance

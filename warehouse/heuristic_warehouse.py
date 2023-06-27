@@ -10,8 +10,7 @@ class HeuristicWarehouse(Heuristic[WarehouseProblemSearch, WarehouseState]):
     def __init__(self):
         super().__init__()
 
-    def compute(self, state: WarehouseState) -> float:#foi implementado
-        # TODO
+    def compute(self, state: WarehouseState) -> float:
         h = 0
         h1 = 0
         h2 = 0
@@ -31,5 +30,5 @@ class HeuristicWarehouse(Heuristic[WarehouseProblemSearch, WarehouseState]):
         self._problem = problem
 
     def __str__(self):
-        return "Tiles distance to final position"
-            # TODO
+        return "Distance to final position"
+

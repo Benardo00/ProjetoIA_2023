@@ -5,18 +5,6 @@ class Pair:
         self.value = 0
         self.solution = None
 
-        # self.pair_path adicionar
-
-        #guardar a lista de celulas correspondentes aquele troço
-
-        #print(self.value)
-        # TODO
-
-        #temos que pecorrer os pares e usar o A*
-        #agente e destino
-        #temos que alterar o valor para aparecer na gui quando se faz run
-
-
 
 
     def hash(self):
