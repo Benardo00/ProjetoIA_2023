@@ -1,0 +1,25 @@
+Population size:	Max generations: 	Selection: 	Recombination: 	Mutation:		Fitness:
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.01)		168
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.03)		164
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.1)		164
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		170
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		179
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		180
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		183
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		179
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		182
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		177
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		174
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		170
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.01)		160
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.03)		173
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.1)		166
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		178
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264D0479590>		163
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264D6B6C590>		152
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264D04084D0>		167
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264CEDB3D90>		165
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.01)		168
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.03)		172
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.1)		171
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.2)		158

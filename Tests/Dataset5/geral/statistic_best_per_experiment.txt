@@ -1,0 +1,48 @@
+
+Population size: 50
+Max generations: 50
+Selection: Tournament selection(2)
+Recombination: PMX recombination (0.6)
+Mutation:Insert Mutation (0.01)
+Fitness: 498
+
+Total de Colisões: Não Contabilizadas
+
+Genome: 
+[11, 42, 26, 21, 12, 16, 22, 23, 27, 19, 29, 30, 24, 28, 32, 35, 39, 3, 41, 15, 13, 10, 14, 20, 9, 6, 5, 1, 2, 7, 8, 4, 43, 40, 37, 33, 36, 25, 17, 38, 34, 31, 18]
+
+
+
+# --------------------------------------------------------------
+
+Population size: 50
+Max generations: 50
+Selection: Tournament selection(2)
+Recombination: PMX recombination (0.6)
+Mutation:Insert Mutation (0.03)
+Fitness: 517
+
+Total de Colisões: Não Contabilizadas
+
+Genome: 
+[6, 2, 1, 9, 25, 17, 20, 23, 27, 38, 34, 30, 13, 41, 21, 22, 28, 33, 12, 24, 26, 39, 29, 19, 4, 8, 43, 32, 18, 5, 11, 42, 31, 37, 40, 36, 35, 14, 15, 16, 10, 3, 7]
+
+
+
+# --------------------------------------------------------------
+
+Population size: 50
+Max generations: 50
+Selection: Tournament selection(2)
+Recombination: PMX recombination (0.6)
+Mutation:Insert Mutation (0.1)
+Fitness: 507
+
+Total de Colisões: Não Contabilizadas
+
+Genome: 
+[34, 28, 31, 38, 29, 27, 30, 23, 8, 12, 19, 21, 2, 43, 3, 7, 13, 4, 41, 26, 25, 20, 10, 6, 1, 9, 22, 24, 14, 16, 15, 17, 42, 33, 39, 40, 37, 32, 35, 36, 11, 18, 5]
+
+
+
+# --------------------------------------------------------------

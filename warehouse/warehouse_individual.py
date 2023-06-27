@@ -13,7 +13,6 @@ class WarehouseIndividual(IntVectorIndividual):
         self.total_distance = None
         self.total_collisions = None
         self.collision_penalty = 1000
-        # TODO
         pass
 
     def compute_fitness(self) -> float:
@@ -36,7 +35,7 @@ class WarehouseIndividual(IntVectorIndividual):
         for index, fork in enumerate(genome):  # index e o numero do agente
             if len(fork) == 0:  # protecao se o fokrlift nao tiver produtos
                 # calcular a distancia do agente ate a saidaTODO, usando o index atual e o for dos pares
-                for pair in self.problem.pairs:  # TODO
+                for pair in self.problem.pairs:
                     if pair.cell1 == self.problem.forklifts[index]:
                         if pair.cell2 == self.problem.exit:
                             self.total_distance += pair.solution.cost
@@ -83,37 +82,29 @@ class WarehouseIndividual(IntVectorIndividual):
         # -o num maximo de cells percorridos por um dos forklifts, ou seja, a dimensao da maior lista de cell.
 
     def obtain_all_path(self):
-        # Inicializa as variáveis para rastrear a distância total e o total de colisões
-        # TODO
         # calcula os caminhos completos percorridos pelos fotklifts. Devolve um lista de células (as células percorridas por cada forklift);
         # e o numero maximo de passos
         # necessarios para percorrer todos os caminhos (i.e o numero de celulas do caminho mais longo percorrido por um forklift)
         # devolve o caminho do forklift que demora mais tempo a percorrer
-        # Inicializa as variáveis para rastrear os caminhos e o número máximo de passos
-        paths = []  # Lista de células percorridas por cada empilhadora
-        max_steps = 0  # Número máximo de passos entre todos os caminhos
-        # Percorre cada empilhadora no problema
-        for forklift_index in range(self.num_genes):  # TODO corrigir
-            current_position = self.problem.initial_state.get_forklift_position(
-                forklift_index)  # Posição inicial da empilhadeira
-            path = [current_position]  # Lista para armazenar as células percorridas pela empilhadeira
-            steps = 0  # Número de passos percorridos pela empilhadeira
-
-            # Executa os movimentos até atingir o objetivo
-            while not self.problem.is_goal(current_position):
-                available_actions = self.problem.get_actions(
-                    current_position)  # Obtém as ações disponíveis para a empilhadora
-                action = np.random.choice(available_actions)  # Escolhe uma ação aleatória
-                new_position = self.problem.get_successor(current_position,
-                                                          action)  # Executa a ação e atualiza a posição
-                path.append(new_position)  # Adiciona a nova posição ao caminho da empilhadeira
-                steps += 1
-                current_position = new_position  # Atualiza a posição atual da empilhadeira
-            paths.append(path)  # Adiciona o caminho da empilhadeira à lista de caminhos
-            max_steps = max(max_steps, steps)  # Atualiza o número máximo de passos se necessário
-
-        return paths, max_steps
-        pass
+        paths = []  # Inicializar as variáveis para rastrear os caminhos e o número máximo de passos
+        max_passos = 0
+        longest_path = []
+        for forklift_indice in range(self.num_genes):
+            posiçãoAtual = self.problem.initial_state(
+                forklift_indice)
+            path = [posiçãoAtual]  # celulas percorridas pelo forklift
+            passos = 0
+            while (self.problem.is_goal(posiçãoAtual)) != True:  # Executa os movimentos até atingir o objetivo
+                posicoesDispo = self.problem.get_actions(
+                    posiçãoAtual)
+                action = np.random.choice(posicoesDispo)
+                new_position = self.problem.get_successor(posiçãoAtual, action)
+                path.append(new_position)
+                passos += 1
+                current_position = new_position
+            paths.append(path)
+            max_steps = max(max_passos, passos)
+        return paths, max_passos, longest_path
 
     def __str__(self):
         string = 'Fitness: ' + f'{self.fitness}' + '\n\n'
@@ -128,7 +119,6 @@ class WarehouseIndividual(IntVectorIndividual):
         string += 'Genome: ' + '\n'
         string += str(self.genome) + "\n\n"
 
-        # TODO mostar no painel quando se da run
         return string
 
     def better_than(self, other: "WarehouseIndividual") -> bool:

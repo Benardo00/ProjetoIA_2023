@@ -1,0 +1,25 @@
+Population size:	Max generations: 	Selection: 	Recombination: 	Mutation:		Average:	StdDev:
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.01)		189.85	10.565391616026355
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.03)		187.25	7.892243027175481
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.1)		192.45	11.504238349408448
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		192.7	9.638983348880732
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		198.05	8.523350280259518
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		193.0	7.816648898345122
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		197.15	7.411308926228888
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		193.6	6.069596362197407
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		196.9	8.560957890329796
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		196.0	7.937253933193772
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		195.75	12.30802583682696
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		193.0	11.322543883774529
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.01)		185.3	10.368702908271604
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.03)		190.5	10.423531071570709
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.1)		192.7	10.440785411069418
+100	25	Tournament selection(2)	PMX recombination (0.6)	Insert Mutation (0.2)		195.95	9.620161121311845
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264D0479590>		185.85	11.22174228896743
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264D6B6C590>		185.2	12.917430084966592
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264D04084D0>		190.5	10.380269746013347
+100	25	Tournament selection(2)	PMX recombination (0.6)	<ga.genetic_operators.mutation2.Mutation2 object at 0x00000264CEDB3D90>		188.4	11.60775602776006
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.01)		188.45	12.4638477205075
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.03)		187.05	10.022350023821758
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.1)		190.6	9.926731586982697
+100	25	Tournament selection(2)	PMX recombination (0.6)	Mutation 3 (0.2)		184.75	10.852994978345839
